@@ -1,10 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { View, TextInput, StyleSheet, Text } from "react-native";
 
 import { screenWidth } from "../../utils/common";
 
-export default function AutoFocusInput() {
-  const [inputValues, setInputValue] = useState({});
+export default function PhoneInput(props) {
+  const { inputValues, setInputValue, toggleInputError, errorInputs } = props;
   const firstInput = useRef();
   const secondInput = useRef();
   const thirdInput = useRef();
@@ -53,12 +53,16 @@ export default function AutoFocusInput() {
     } else {
       setTimeout(() => {
         focusInput(Number(name));
+        errorInputs[name] = false;
+        toggleInputError(errorInputs);
       }, 200);
     }
 
     inputValues[name] = keyCode;
     setInputValue(inputValues);
   };
+
+  console.log('all errro inputs', errorInputs);
 
   return (
     <View style={styles.inputContainer}>
@@ -72,7 +76,7 @@ export default function AutoFocusInput() {
         +91
       </Text>
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, errorInputs["1"] ? styles.errorInput : null]}
         onKeyPress={(e) => inputKeyPressed(e, "1")}
         value={inputValues["1"]}
         maxLength={1}
@@ -80,7 +84,7 @@ export default function AutoFocusInput() {
         name="1"
       />
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, errorInputs["2"] ? styles.errorInput : null]}
         onKeyPress={(e) => inputKeyPressed(e, "2")}
         value={inputValues["2"]}
         maxLength={1}
@@ -88,7 +92,7 @@ export default function AutoFocusInput() {
         name="2"
       />
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, errorInputs["3"] ? styles.errorInput : null]}
         onKeyPress={(e) => inputKeyPressed(e, "3")}
         value={inputValues["3"]}
         maxLength={1}
@@ -96,7 +100,7 @@ export default function AutoFocusInput() {
         name="3"
       />
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, errorInputs["4"] ? styles.errorInput : null]}
         value={inputValues["4"]}
         maxLength={1}
         onKeyPress={(e) => inputKeyPressed(e, "4")}
@@ -104,7 +108,7 @@ export default function AutoFocusInput() {
         name="4"
       />
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, errorInputs["5"] ? styles.errorInput : null]}
         value={inputValues["5"]}
         maxLength={1}
         onKeyPress={(e) => inputKeyPressed(e, "5")}
@@ -112,7 +116,7 @@ export default function AutoFocusInput() {
         name="5"
       />
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, errorInputs["6"] ? styles.errorInput : null]}
         value={inputValues["6"]}
         maxLength={1}
         onKeyPress={(e) => inputKeyPressed(e, "6")}
@@ -120,7 +124,7 @@ export default function AutoFocusInput() {
         name="6"
       />
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, errorInputs["7"] ? styles.errorInput : null]}
         value={inputValues["7"]}
         maxLength={1}
         onKeyPress={(e) => inputKeyPressed(e, "7")}
@@ -128,7 +132,7 @@ export default function AutoFocusInput() {
         name="7"
       />
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, errorInputs["8"] ? styles.errorInput : null]}
         value={inputValues["8"]}
         maxLength={1}
         onKeyPress={(e) => inputKeyPressed(e, "8")}
@@ -136,7 +140,7 @@ export default function AutoFocusInput() {
         name="8"
       />
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, errorInputs["9"] ? styles.errorInput : null]}
         value={inputValues["9"]}
         maxLength={1}
         onKeyPress={(e) => inputKeyPressed(e, "9")}
@@ -144,7 +148,7 @@ export default function AutoFocusInput() {
         name="9"
       />
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, errorInputs["10"] ? styles.errorInput : null]}
         value={inputValues["10"]}
         maxLength={1}
         onKeyPress={(e) => inputKeyPressed(e, "10")}
@@ -165,12 +169,15 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
+    borderBottomWidth: 2,
     borderBottomColor: "gray",
-    borderBottomWidth: 1,
     width: screenWidth / 14,
     margin: screenWidth / 98,
     fontSize: 22,
     fontWeight: "600",
     textAlign: "center",
   },
+  errorInput: {
+      borderBottomColor: "red"
+  }
 });
