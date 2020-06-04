@@ -17,7 +17,7 @@ import MobileIcon from "../../assets/images/smartphone.png";
 export default function GetOTP() {
   const phone = useRef();
   const myCountryPicker = useRef();
-  const [pickerData, setInputValue] = useState("");
+  // const [pickerData, setInputValue] = useState("");
 
   const onPressFlag = () => {
     myCountryPicker.open();
