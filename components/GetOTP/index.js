@@ -1,28 +1,14 @@
 import React, { useState, useRef } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ImageBackground,
-  Image,
-  TextInput,
-} from "react-native";
-import PhoneInput from "react-native-phone-input";
+import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
 
 import { screenWidth, screenHeight } from "../../utils/common";
+
+import AutoFocusInput from "../AutoFocusInput";
 
 import GreenBackground from "../../assets/images/green-background.jpg";
 import MobileIcon from "../../assets/images/smartphone.png";
 
 export default function GetOTP() {
-  const phone = useRef();
-  const myCountryPicker = useRef();
-  // const [pickerData, setInputValue] = useState("");
-
-  const onPressFlag = () => {
-    myCountryPicker.open();
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.curvedContainer}>
@@ -51,21 +37,7 @@ export default function GetOTP() {
             alignSelf: "stretch",
           }}
         />
-        <View style={styles.inputContainer}>
-          <Text
-            style={{
-              fontSize: 22,
-              paddingLeft: screenWidth / 98,
-              fontWeight: "600",
-            }}
-          >
-            +91
-          </Text>
-          <PhoneInput
-            ref={phone}
-            onPressFlag={onPressFlag}
-          />
-        </View>
+        <AutoFocusInput />
       </View>
     </View>
   );
@@ -122,22 +94,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     lineHeight: 24,
-  },
-  inputContainer: {
-    width: screenWidth,
-    paddingTop: 20,
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  textInput: {
-    height: 40,
-    borderBottomColor: "gray",
-    borderBottomWidth: 1,
-    width: screenWidth / 14,
-    margin: screenWidth / 98,
-    fontSize: 22,
-    fontWeight: "600",
-    textAlign: "center",
   },
 });
