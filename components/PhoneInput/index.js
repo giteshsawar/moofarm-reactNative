@@ -161,7 +161,7 @@ export default function PhoneInput(props) {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    width: screenWidth,
+    width: screenWidth - screenWidth/98,
     paddingTop: 20,
     display: "flex",
     flexDirection: "row",
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: "gray",
     width: screenWidth / 14,
-    margin: screenWidth / 98,
+    margin: screenWidth / 99,
     fontSize: 22,
     fontWeight: "600",
     textAlign: "center",

@@ -46,7 +46,7 @@ export default class GetOTP extends React.Component {
         this.toggleInputError(errorInputs);
       }
     }
-    this.props.navigation.push('login');
+    if (redirect) this.props.navigation.push('login');
   };
 
   render() {

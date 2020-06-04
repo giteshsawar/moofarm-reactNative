@@ -192,6 +192,6 @@ const styles = StyleSheet.create({
   resendOTP: {
     color: "green",
     fontSize: 18,
-    fontWeight: 600
+    fontWeight: '600'
   },
 });
